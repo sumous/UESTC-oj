@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<algorithm>
+#include<string.h>
+using namespace std;
+struct team
+{
+	char name[35];
+	int b,c,d,e,f,g,h;
+}t[35];
+bool cmp(struct team a, struct team b)
+{}
+int main()
+{
+	int t;
+	char rou[105];
+	scanf("%d", &t);
+	while(t--)
+	{
+		gets(rou);
+		puts(rou);
+		int n;
+		scanf("%d", &n);
+		for(int i = 0;i < n;i ++)
+		{
+			scanf("%s",t[i].name);
+			t[i].b=t[i].c=t[i].d=t[i].e=t[i].f=t[i].g=t[i].h=0;
+		}
+		int n0, p1, p2;
+		char s1[35],s2[35];
+		scanf("%d",&n0);
+		while(n0--)
+		{
+			scanf("%s#%d@%d#%s\n",s1,&p1,&p2,s2);
+			if(p1>p2)
+			{
+				for(int j = 0;j < n;j ++)
+				{
+					if(strcmp(s1,t[i].name)==0)//Ó®¼Ò 
+					{
+						t[i].b+=3;t[i].c++;t[i].d++;t[i].g+=p1-p2;t[i].h+=p1;
+					}
+					if(strcmp(s2,t[i].name)==0)//Êä 
+					{
+						t[i].c++;t[i].f++;t[i].g+=p2-p1;t[i].h+=p2;
+					}
+				}
+			}
+			else if(p1<p2)
+			{
+				for(int j = 0;j < n;j ++)
+				{
+					if(strcmp(s2,t[i].name)==0)//Ó®¼Ò 
+					{
+						t[i].b+=3;t[i].c++;t[i].d++;t[i].g+=p2-p1;t[i].h+=p2;
+					}
+					if(strcmp(s1,t[i].name)==0)//Êä 
+					{
+						t[i].c++;t[i].f++;t[i].g+=p1-p2;t[i].h+=p1;
+					}
+				}
+			}
+			else
+			{
+				for(int j = 0;j < n;j ++)
+				{
+					if(strcmp(s1,t[i].name)==0)
+					{
+						t[i].b+=1;t[i].c++;t[i].e++;t[i].h+=p1;
+					}
+					if(strcmp(s2,t[i].name)==0)
+					{
+						t[i].b+=1;t[i].c++;t[i].e++;t[i].h+=p2;
+					}
+				}
+			}
+		}
+		for(int i = 0;i < n;i ++)
+			printf("%d) %s %dp, %dg (%d-%d-%d), %dgd (%d-%d)",i+1,t[i].name,t[i].b,t[i].c,t[i].d,t[i].e,t[i].f,t[i].g,t[i].h,t[i].h-t[i].g);
+	}
+	return 0;
+}
