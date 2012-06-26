@@ -1,22 +1,23 @@
-
+#include <iostream>
 #include <stdio.h>
 #define __uint64 long long
+using namespace std;
 
 struct __int
 {
 	__uint64 a, b;
 	__uint64 sum;//[a, b]区间的总和
 	__uint64 add;//[a, b]区间的增量
-}tree[400005];
+}tree[900005];
 __uint64 N, Q, tlen = 0;
 __uint64 node[100005];
 
 void load()
 {
 	
-	scanf("%lld%lld", &N, &Q);
+	cin >> N >> Q;
 	for (int i = 1; i <= N; i++)
-		scanf("%lld", &node[i]);
+		cin >> node[i];
 }
 /* 建线段树 */
 void create(__uint64 num, __uint64 a, __uint64 b)
@@ -101,17 +102,16 @@ void solve()
 	__uint64 a, b, c;
 	for (int i = 0; i < Q; i++)
 	{
-		getchar();
-		scanf("%c", &ch);
-	//	printf("%c\n", ch);
+		
+		cin >> ch;
 		if (ch == 'Q')
 		{
-			scanf("%lld%lld", &a, &b);
-			printf("%lld\n", query(1, a, b) );
+			cin >> a >> b;
+			cout << query(1, a, b) << endl;
 		}
 		else
 		{
-			scanf("%lld%lld%lld", &a, &b, &c);
+			cin >> a >> b >> c;
 			update(1, a, b, c);
 		}
 	}
